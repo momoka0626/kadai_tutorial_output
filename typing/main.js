@@ -28,16 +28,15 @@ const createText = () => {
     typed = '';
     typedfield.textContent = typed;
 
-    let random = Math.floor(Math.random() *textLists.length);
+    let random = Math.floor(Math.random() * textLists.length);
     untyped = textLists[random];
     untypedfield.textContent = untyped;
 };
-createText();
 
 const keyPress = e => {
     // 誤タイプの場合
     if(e.key !== untyped.substring(0,1)) {
-        wrap.classList.remove('mistyped');
+        wrap.classList.add('mistyped');
         setTimeout(() => {
             wrap.classList.remove('mistyped');
         },100);
@@ -49,11 +48,11 @@ const keyPress = e => {
     untyped = untyped.substring(1);
     typedfield.textContent = typed;
     untypedfield.textContent = untyped;
-};
 
-if(untyped === '') {
+    if(untyped === '') {
     createText();
 }
+};
 
 const rankCheck = score => {
     let text ='';
@@ -97,6 +96,6 @@ start.addEventListener('click', () => {
     createText();
     start.style.display = 'none';
 
-document.addEventListener('keypress',keyPress);
+document.addEventListener('keypress', keyPress);
 });
 untypedfield.textContent = 'スタートボタンで開始';
